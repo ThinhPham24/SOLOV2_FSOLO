@@ -42,28 +42,29 @@ python setup.py build develop
 2. Download the model `wget https://cloudstor.aarnet.edu.au/plus/s/glqFc13cCoEyHYy/download -O fcos_R_50_1x.pth`.
 3. Run the demo with
 ```bash
+wget https://cloudstor.aarnet.edu.au/plus/s/chF3VKQT4RDoEqC/download -O SOLOv2_R50_3x.pth
 python demo/demo.py \
-    --config-file configs/FCOS-Detection/R_50_1x.yaml \
+    --config-file configs/SOLOv2/R50_3x.yaml \
     --input input1.jpg input2.jpg \
-    --opts MODEL.WEIGHTS fcos_R_50_1x.pth
+    --opts MODEL.WEIGHTS SOLOv2_R50_3x.pth
 ```
 ## Train Your Own Models.
 
 **To train a model with "train_net.py", first setup the corresponding datasets following [datasets/README.md](https://github.com/facebookresearch/detectron2/blob/main/datasets/README.md), then run:**
 ```bash
 OMP_NUM_THREADS=1 python tools/train_net.py \
-    --config-file configs/FCOS-Detection/R_50_1x.yaml \
+    --config-file configs/SOLOv2/R50_3x.yaml \
     --num-gpus 8 \
-    OUTPUT_DIR training_dir/fcos_R_50_1x
+    OUTPUT_DIR training_dir/SOLOv2_R50_3x
 ```
 **To evaluate the model after training, run:**
 ```bash
 OMP_NUM_THREADS=1 python tools/train_net.py \
-    --config-file configs/FCOS-Detection/R_50_1x.yaml \
+    --config-file configs/SOLOv2/R50_3x.yaml \
     --eval-only \
     --num-gpus 8 \
-    OUTPUT_DIR training_dir/fcos_R_50_1x \
-    MODEL.WEIGHTS training_dir/fcos_R_50_1x/model_final.pth
+    OUTPUT_DIR training_dir/SOLOv2_R50_3x \
+    MODEL.WEIGHTS training_dir/SOLOv2_R50_3x/model_final.pth
 ```
 **Note That:**
 * The configs are made for 8-GPU training. To train on another number of GPUs, change the `--num-gpus`.
